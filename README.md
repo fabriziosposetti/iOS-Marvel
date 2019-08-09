@@ -7,6 +7,14 @@ of comics and allows you to access the detail of each one by selecting it. It al
  characters that are stored in the device's local database
 
 
+## Generate your Marvel API keys
+
+1. Create an account at http://developer.marvel.com
+
+2. After confirming your account, click on the "Get A Key" tab and accept the terms and conditions. You should now see your private and public key.
+
+
+
 ## How to Build
 1. Prepare API authentication
 
