@@ -12,3 +12,9 @@ of comics and allows you to access the detail of each one by selecting it. It al
 
       - Copy iOS-Marvel/apikeys_template.plist to iOS-Marvel/apikeys.plist
       - Add your public and private keys to apikeys.plist
+
+2. The app is using Carthage as dependency manager so you will need to run at the root directory of your project:
+```sh
+$ carthage update --platform iOS
+```
+
