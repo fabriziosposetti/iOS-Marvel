@@ -13,6 +13,8 @@ of comics and allows you to access the detail of each one by selecting it. It al
 
 2. After confirming your account, click on the "Get A Key" tab and accept the terms and conditions. You should now see your private and public key.
 
+3. Copy the public key and paste it into the publicKey section of the apikeys.plist file. Do the same for your private key.
+
 
 
 ## How to Build
