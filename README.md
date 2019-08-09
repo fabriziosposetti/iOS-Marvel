@@ -27,4 +27,9 @@ of comics and allows you to access the detail of each one by selecting it. It al
 ```sh
 $ carthage update --platform iOS
 ```
+carthage:
+Alamofire - HTTP networking library for API calls
 
+Kingfisher - HTTP networking library for easy downloading of images asynchronously
+
+Realm - Local device data base
