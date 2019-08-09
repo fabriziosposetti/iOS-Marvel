@@ -1,0 +1,22 @@
+/* 
+  Strings.strings
+  ZinoApp
+
+  Created by Fabrizio Sposetti on 02/08/2019.
+  Copyright © 2019 Fabrizio Sposetti. All rights reserved.
+*/
+
+"Error" = "Error";
+"MarvelCharacters" = "Marvel Characters";
+"FavouritesCharacters" = "Favourites Characters";
+"Favourites" = "Favourites";
+"AddFavouriteMessage" = "¿Do you want to add a character to a favorite list?";
+"Yes" = "Yes";
+"No" = "No";
+"DeleteFavourite" = "Delete favourite";
+"CharacterDeleteMessage" = "¿Do you want to delete %@ as a favourite character?" ;
+"Delete" = "Delete";
+"CharacterFavouriteAdded" = "Character added as a favourite";
+"NoFavouritesCaracters" = "No favourites charcters at the moment.";
+"MessageErrorCharacters" = "We could not get the characters, please try again";
+
