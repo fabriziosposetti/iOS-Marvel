@@ -10,5 +10,5 @@ of comics and allows you to access the detail of each one by selecting it. It al
 ## How to Build
 1. Prepare API authentication
 
-  - Copy iOS-Marvel/apikeys_template.plist to iOS-Marvel/apikeys.plist
-  - Add your public and private keys to apikeys.plist
+      - Copy iOS-Marvel/apikeys_template.plist to iOS-Marvel/apikeys.plist
+      - Add your public and private keys to apikeys.plist
