@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="abz-wb-FGj">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="x8n-1K-e6C">
                                     <size key="itemSize" width="50" height="50"/>
@@ -39,21 +39,37 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Type to search..." showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDv-3H-Z5b">
+                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="abz-wb-FGj" firstAttribute="leading" secondItem="bO5-VP-xpz" secondAttribute="leading" id="7x6-ii-5C1"/>
                             <constraint firstItem="bO5-VP-xpz" firstAttribute="bottom" secondItem="abz-wb-FGj" secondAttribute="bottom" id="C3Q-Nt-nuR"/>
-                            <constraint firstItem="abz-wb-FGj" firstAttribute="top" secondItem="bO5-VP-xpz" secondAttribute="top" id="WOz-8j-QfH"/>
+                            <constraint firstItem="qDv-3H-Z5b" firstAttribute="trailing" secondItem="bO5-VP-xpz" secondAttribute="trailing" id="YHW-xP-dHA"/>
+                            <constraint firstItem="abz-wb-FGj" firstAttribute="top" secondItem="qDv-3H-Z5b" secondAttribute="bottom" id="izv-c2-biB"/>
+                            <constraint firstItem="abz-wb-FGj" firstAttribute="top" secondItem="qDv-3H-Z5b" secondAttribute="bottom" id="mqQ-QA-BIV"/>
+                            <constraint firstItem="qDv-3H-Z5b" firstAttribute="top" secondItem="bO5-VP-xpz" secondAttribute="top" id="nX8-eW-8od"/>
+                            <constraint firstItem="qDv-3H-Z5b" firstAttribute="leading" secondItem="bO5-VP-xpz" secondAttribute="leading" id="uUH-ug-zNc"/>
                             <constraint firstItem="bO5-VP-xpz" firstAttribute="trailing" secondItem="abz-wb-FGj" secondAttribute="trailing" id="y2B-NG-zi5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bO5-VP-xpz"/>
                     </view>
                     <navigationItem key="navigationItem" id="9ED-NL-0jU">
-                        <barButtonItem key="backBarButtonItem" title=" " id="dbe-G4-d0z"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="8hb-DG-tNy"/>
                     </navigationItem>
                     <connections>
                         <outlet property="charactersCollection" destination="abz-wb-FGj" id="8HR-ff-hJQ"/>
+                        <outlet property="searchBar" destination="qDv-3H-Z5b" id="oeC-bb-kvo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLI-0U-J7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -128,6 +144,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jkn-3X-TGI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.66666666666666663" green="0.027450980392156862" blue="0.0078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -147,6 +165,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nSl-af-AlB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.66666666669999997" green="0.027450980390000001" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

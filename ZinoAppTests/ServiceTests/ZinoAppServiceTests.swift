@@ -80,5 +80,26 @@ class ZinoAppServiceTests: XCTestCase {
             wait(for: [expectation], timeout: 3000)
         }
     }
+    
+    
+    func testFilterMarvelApiCall() {
+        let limit = 10
+        let offset = 0
+        let characterName = "A.I.M."
+        
+        let expectation = self.expectation(description: "async call")
+        DAO.Instance.getCharacters(limit: limit, offset: offset, nameStartsWith: characterName) { response, error in
+            
+            XCTAssertNotNil(response?.data)
+            XCTAssertNil(error)
+            
+            let character = response?.data?.results?.filter({ $0.name == "A.I.M." })
+            XCTAssertNotNil(character)
+            XCTAssertTrue(character!.count >= 1)
+
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 3000)
+    }
 
 }

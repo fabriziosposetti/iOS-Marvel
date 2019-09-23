@@ -46,4 +46,5 @@ enum Text: String, LocalizedEnum {
     case CharacterFavouriteAdded
     case NoFavouritesCaracters
     case MessageErrorCharacters
+    case EmptyMessage
 }

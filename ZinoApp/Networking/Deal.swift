@@ -32,17 +32,21 @@ public class Deal {
         }
     }
     
-    func getCharactersUrl(limit: Int, offset: Int) -> URLRequest {
+    func getCharactersUrl(limit: Int, offset: Int, nameStartsWith: String? = nil) -> URLRequest {
         let dict: KeyDict = self.getKeys()
         let ts = "thesoer"
         let hash = md5Hash(str: "\(ts)\(dict.privateKey!)\(dict.publicKey!)")
 
         
-        let queryItems = [URLQueryItem(name: "apikey", value: "\(dict.publicKey!)"),
+        var queryItems = [URLQueryItem(name: "apikey", value: "\(dict.publicKey!)"),
                           URLQueryItem(name: "hash", value: "\(hash)"),
                           URLQueryItem(name: "ts", value: "\(ts)"),
                           URLQueryItem(name: "limit", value: "\(limit)"),
                           URLQueryItem(name: "offset", value: "\(offset)")]
+        
+        if let filter = nameStartsWith {
+            queryItems.append(URLQueryItem(name: "nameStartsWith", value: filter))
+        }
     
         var urlComps = URLComponents(string: "https://gateway.marvel.com:443/v1/public/characters")!
 

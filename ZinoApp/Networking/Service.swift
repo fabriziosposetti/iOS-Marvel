@@ -18,8 +18,9 @@ public class Service {
     
     func getCharacters(limit: Int,
                        offset: Int,
+                       nameStartsWith: String?,
                        completionHandler: @escaping HandleCharactersResponse) {
-        let urlRequest = Deal.instance.getCharactersUrl(limit: limit, offset: offset)
+        let urlRequest = Deal.instance.getCharactersUrl(limit: limit, offset: offset, nameStartsWith: nameStartsWith)
         AF.request(urlRequest)
             .validate()
             .responseJSON { response in

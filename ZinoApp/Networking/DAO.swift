@@ -12,8 +12,8 @@ public class DAO {
     
     public static let Instance = DAO()
     
-    func getCharacters(limit: Int, offset: Int, completionHandler: @escaping HandleCharactersResponse) {
-        Service.instance.getCharacters(limit: limit, offset: offset, completionHandler: completionHandler)
+    func getCharacters(limit: Int, offset: Int, nameStartsWith: String? = nil, completionHandler: @escaping HandleCharactersResponse) {
+        Service.instance.getCharacters(limit: limit, offset: offset, nameStartsWith: nameStartsWith, completionHandler: completionHandler)
     }
     
     func addFavouriteToDB(character: CharacterModel) {

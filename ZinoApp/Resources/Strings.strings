@@ -19,4 +19,5 @@
 "CharacterFavouriteAdded" = "Character added as a favourite";
 "NoFavouritesCaracters" = "No favourites charcters at the moment.";
 "MessageErrorCharacters" = "We could not get the characters, please try again";
+"EmptyMessage" = "Nothing to show :(";
 

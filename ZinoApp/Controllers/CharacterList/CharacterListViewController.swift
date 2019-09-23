@@ -12,6 +12,7 @@ import Alamofire
 class CharacterListViewController: UIViewController {
     
     @IBOutlet weak var charactersCollection: UICollectionView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var loadingData = false
     var limit:Int = CONSTANTS.CHARACTER_LIMMIT
@@ -22,15 +23,22 @@ class CharacterListViewController: UIViewController {
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     let reusableCellIdentifier = "CharacterUICollectionViewCell"
     
+    var searching = false
+    
     var characters: [CharacterModel] = []
     var prevImportList: [CharacterModel] = []
+
+    
+    var searchTask: DispatchWorkItem?
+    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = Text.MarvelCharacters.description
         configureCollectionView()
-        getCharacters(limit: limit, offset: offset)
+        configureSearchBar()
+        getCharacters(limit: limit, offset: offset, nameStartsWith: nil)
     }
     
     private func configureCollectionView() {
@@ -39,22 +47,29 @@ class CharacterListViewController: UIViewController {
         charactersCollection.register(UINib(nibName: CharacterUICollectionViewCell.nibName, bundle: nil), forCellWithReuseIdentifier: CharacterUICollectionViewCell.nibName)        
     }
     
-    private func getCharacters(limit: Int, offset: Int) {
+    private func configureSearchBar() {
+        searchBar.delegate = self
+        searchBar.showsCancelButton = false
+    }
+    
+    private func getCharacters(limit: Int, offset: Int, nameStartsWith: String?) {
         showActivityIndicator(activityIndicator: activityIndicator)
-        DAO.Instance.getCharacters(limit: limit, offset: offset) { [weak self] response, error in
+        DAO.Instance.getCharacters(limit: limit, offset: offset, nameStartsWith: nameStartsWith) { [weak self] response, error in
             guard let self = self else { return }
             self.stopActivityIndicator(activityIndicator: self.activityIndicator)
             if error == nil {
                 self.totalCharacters = (response?.data?.total)!
-                if let newData = response?.data?.results {
-                    let newImport: [CharacterModel] = newData
-                    self.characters += newImport
+                
+                if let _ = nameStartsWith {
+                    self.handleFilterResults(characters: (response?.data?.results)!)
+                } else {
+                    self.handleScrollResults(characters: (response?.data?.results)!)
                 }
-                            
-                self.offset += (response?.data?.results?.count)!
+                
                 self.loadingData = false
                 self.charactersCollection.reloadData()
                 self.callServiceAgain = false
+                self.searching = false
             } else {
                 self.showToast(message: Text.MessageErrorCharacters.description,
                                width: CONSTANTS.TOAST_SIZE,
@@ -65,10 +80,20 @@ class CharacterListViewController: UIViewController {
         }
     }
     
+    private func handleScrollResults(characters: [CharacterModel]) {
+        let newImport: [CharacterModel] = characters
+        self.characters += newImport
+        self.offset += characters.count
+    }
+    
+    private func handleFilterResults(characters: [CharacterModel]) {
+        self.characters = characters
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if callServiceAgain {
-            getCharacters(limit: limit, offset: offset)
+            getCharacters(limit: limit, offset: offset, nameStartsWith: nil)
         }
     }
     
@@ -78,7 +103,12 @@ class CharacterListViewController: UIViewController {
 extension CharacterListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return characters.count
+        if (self.characters.count == 0 && activityIndicator.isHidden) {
+            charactersCollection.setEmptyMessage(Text.EmptyMessage.description)
+        } else {
+            charactersCollection.restore()
+        }
+        return self.characters.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -115,13 +145,45 @@ extension CharacterListViewController: UICollectionViewDelegate, UICollectionVie
         if indexPath.row == totalCharacters - 1 {
             return
         }
-        
         if indexPath.row == characters.count - 1 && !loadingData {
             self.loadingData = true
-            self.getCharacters(limit:limit, offset:offset)
+            self.getCharacters(limit:limit, offset:offset, nameStartsWith: nil)
         }
     }
     
+}
+
+extension  CharacterListViewController: UISearchBarDelegate {
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.showsCancelButton = true
+        return true
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        var text: String? = searchText
+        if searchText == "" {
+            text = nil
+            self.characters = []
+        }
+        
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            guard let self = self else { return }
+            self.offset = 0
+            if !self.searching {
+                self.searching = true
+                self.getCharacters(limit: self.limit, offset: self.offset, nameStartsWith: text)
+            }
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.50, execute: task)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        searchBar.showsCancelButton = false
+    }
     
 }
 
