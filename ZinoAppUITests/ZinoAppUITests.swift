@@ -9,26 +9,75 @@
 import XCTest
 
 class ZinoAppUITests: XCTestCase {
+    
+    var app: XCUIApplication!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        app = XCUIApplication()
+        app.launchArguments = ["enable-testing"]
+        app.launch()
     }
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
 
-    func testExample() {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testFilterCharacterOK() {
+        app.searchFields["Type to search..."].tap()
+        
+        let jKey = app.keys["J"]
+        jKey.tap()
+        let aKey = app.keys["a"]
+        aKey.tap()
+        let cKey = app.keys["c"]
+        cKey.tap()
+        let kKey = app.keys["k"]
+        kKey.tap()
+        aKey.tap()
+        
+        let isFiltered = app.collectionViews.cells.staticTexts["Jackal"].isHittable
+        
+        XCTAssertTrue(isFiltered)
+    }
+    
+    
+    func testDisplayDetailCharacter() {
+        let character = app.collectionViews.cells.staticTexts["3-D Man"]
+        character.tap()
+        
+        let detailCharacterTitleExists = app.navigationBars["3-D Man"].otherElements["3-D Man"].exists
+        let favouriteButtonExists = app.buttons["favourite"].exists
+        
+        XCTAssertTrue(detailCharacterTitleExists)
+        XCTAssertTrue(favouriteButtonExists)
+    }
+    
+    
+    func testAddCharacterAsFavourite() {
+        let character = app.collectionViews.cells.staticTexts["3-D Man"]
+        character.tap()
+        
+        let favouriteAddedButton = app.buttons["favourite added"]
+        let favouritesAlert = app.alerts["Favourites"]
+        let favouriteButton = app.buttons["favourite"]
+        
+        if (favouriteAddedButton.exists) {
+            favouriteAddedButton.tap()
+            favouritesAlert.buttons["Yes"].tap()
+        }
+        
+        favouriteButton.tap()
+        
+        let isNotFavourite = favouritesAlert.staticTexts["¿Do you want to add a character to your favorite list?"].exists
+
+        if isNotFavourite {
+            favouritesAlert.buttons["Yes"].tap()
+            let isAdded = app.buttons["favourite added"].exists
+            XCTAssertTrue(isAdded)
+            
+            app.tabBars.buttons["Favorites"].tap()
+            let existsInFavouriteList = app.tables/*@START_MENU_TOKEN@*/.staticTexts["3-D Man"]/*[[".cells.staticTexts[\"3-D Man\"]",".staticTexts[\"3-D Man\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.exists
+            XCTAssertTrue(existsInFavouriteList)
+        }
+        
     }
 
 }

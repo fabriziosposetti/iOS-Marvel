@@ -32,6 +32,7 @@ class CharacterDetailViewController: UIViewController {
         setImageFrom(url, characterImage)
         lblCharacterName.text = character?.name
         tvDescription.text = character?.getDescription()
+        tvDescription.isEditable = false
         updateFavouriteIcon()
     }
     

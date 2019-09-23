@@ -153,7 +153,7 @@ extension CharacterListViewController: UICollectionViewDelegate, UICollectionVie
     
 }
 
-extension  CharacterListViewController: UISearchBarDelegate {
+extension CharacterListViewController: UISearchBarDelegate {
     
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         searchBar.showsCancelButton = true

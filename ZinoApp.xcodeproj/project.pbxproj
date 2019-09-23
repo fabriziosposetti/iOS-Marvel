@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		69018739233940AA001936DD /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69018738233940AA001936DD /* UICollectionView+Extension.swift */; };
+		6901873C23394A19001936DD /* CharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6901873B23394A19001936DD /* CharacterTests.swift */; };
 		692B63E722F4B79D0026CE11 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6978D8C822F4876E00B8F64A /* Alamofire.framework */; };
 		692B63E922F4B7A20026CE11 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6978D8C822F4876E00B8F64A /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		692B63ED22F4B8DE0026CE11 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 692B63EB22F4B8DA0026CE11 /* Kingfisher.framework */; };
@@ -83,6 +84,7 @@
 
 /* Begin PBXFileReference section */
 		69018738233940AA001936DD /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		6901873B23394A19001936DD /* CharacterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterTests.swift; sourceTree = "<group>"; };
 		692B63EB22F4B8DA0026CE11 /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 		6946DA8F22F4BF30000CB231 /* CharacterUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterUICollectionViewCell.swift; sourceTree = "<group>"; };
 		6946DA9022F4BF30000CB231 /* CharacterUICollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterUICollectionViewCell.xib; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6901873A233949EF001936DD /* UnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				6901873B23394A19001936DD /* CharacterTests.swift */,
+			);
+			path = UnitTests;
+			sourceTree = "<group>";
+		};
 		6946DA9422F4C84B000CB231 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -233,6 +243,7 @@
 		6978D8A022F46EBA00B8F64A /* ZinoAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				6901873A233949EF001936DD /* UnitTests */,
 				69CA1EDA22FA6EC300CFDBA4 /* ServiceTests */,
 				6978D8A322F46EBA00B8F64A /* Info.plist */,
 			);
@@ -549,6 +560,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6978D8A222F46EBA00B8F64A /* ZinoAppServiceTests.swift in Sources */,
+				6901873C23394A19001936DD /* CharacterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

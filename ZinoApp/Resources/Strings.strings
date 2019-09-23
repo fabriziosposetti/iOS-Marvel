@@ -10,7 +10,7 @@
 "MarvelCharacters" = "Marvel Characters";
 "FavouritesCharacters" = "Favourites Characters";
 "Favourites" = "Favourites";
-"AddFavouriteMessage" = "¿Do you want to add a character to a favorite list?";
+"AddFavouriteMessage" = "¿Do you want to add a character to your favorite list?";
 "Yes" = "Yes";
 "No" = "No";
 "DeleteFavourite" = "Delete favourite";

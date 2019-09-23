@@ -18,12 +18,14 @@ class CharacterModel: Object, Codable {
     @objc dynamic var isFavourite: Bool = false
     
     public func getDescription() -> String {
-        return description == "" ? "No description Found" : "\(resultDescription ?? "")"
+        return resultDescription == "" ? "Description Not Found" : "\(resultDescription ?? "")"
     }
     
     override public static func primaryKey() -> String {
         return "id"
     }
+    
+
     
     enum CodingKeys: String, CodingKey {
         case id, name
