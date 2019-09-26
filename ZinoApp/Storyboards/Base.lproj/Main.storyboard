@@ -50,12 +50,24 @@
                                     <string>Title</string>
                                 </scopeButtonTitles>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvy-81-Bb2">
+                                <rect key="frame" x="166.5" y="431" width="81" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" title="Try Again!">
+                                    <color key="titleColor" red="0.66666666669999997" green="0.027450980390000001" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="tryAgainBtnTapped:" destination="jCe-4O-CIc" eventType="touchUpInside" id="TLd-Es-04V"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="abz-wb-FGj" firstAttribute="leading" secondItem="bO5-VP-xpz" secondAttribute="leading" id="7x6-ii-5C1"/>
+                            <constraint firstItem="vvy-81-Bb2" firstAttribute="centerX" secondItem="iOA-Ua-5CC" secondAttribute="centerX" id="8gC-TN-mhY"/>
                             <constraint firstItem="bO5-VP-xpz" firstAttribute="bottom" secondItem="abz-wb-FGj" secondAttribute="bottom" id="C3Q-Nt-nuR"/>
                             <constraint firstItem="qDv-3H-Z5b" firstAttribute="trailing" secondItem="bO5-VP-xpz" secondAttribute="trailing" id="YHW-xP-dHA"/>
+                            <constraint firstItem="vvy-81-Bb2" firstAttribute="centerY" secondItem="iOA-Ua-5CC" secondAttribute="centerY" id="iVX-tC-mpt"/>
                             <constraint firstItem="abz-wb-FGj" firstAttribute="top" secondItem="qDv-3H-Z5b" secondAttribute="bottom" id="izv-c2-biB"/>
                             <constraint firstItem="abz-wb-FGj" firstAttribute="top" secondItem="qDv-3H-Z5b" secondAttribute="bottom" id="mqQ-QA-BIV"/>
                             <constraint firstItem="qDv-3H-Z5b" firstAttribute="top" secondItem="bO5-VP-xpz" secondAttribute="top" id="nX8-eW-8od"/>
@@ -70,11 +82,12 @@
                     <connections>
                         <outlet property="charactersCollection" destination="abz-wb-FGj" id="8HR-ff-hJQ"/>
                         <outlet property="searchBar" destination="qDv-3H-Z5b" id="oeC-bb-kvo"/>
+                        <outlet property="tryAgainBtn" destination="vvy-81-Bb2" id="Wjl-6y-Eze"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DLI-0U-J7W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1474" y="-672"/>
+            <point key="canvasLocation" x="1473.913043478261" y="-672.32142857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="UwI-lG-ujl">

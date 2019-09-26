@@ -13,12 +13,12 @@ class CharacterListViewController: UIViewController {
     
     @IBOutlet weak var charactersCollection: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tryAgainBtn: UIButton!
     
     var loadingData = false
     var limit:Int = CONSTANTS.CHARACTER_LIMMIT
     var offset:Int = CONSTANTS.CHRACTERS_OFFSET
     var totalCharacters: Int = 0
-    var callServiceAgain = false
     
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     let reusableCellIdentifier = "CharacterUICollectionViewCell"
@@ -36,6 +36,7 @@ class CharacterListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.topItem?.title = Text.MarvelCharacters.description
+        tryAgainBtn.isHidden = true
         configureCollectionView()
         configureSearchBar()
         getCharacters(limit: limit, offset: offset, nameStartsWith: nil)
@@ -50,6 +51,7 @@ class CharacterListViewController: UIViewController {
     private func configureSearchBar() {
         searchBar.delegate = self
         searchBar.showsCancelButton = false
+        searchBar.isHidden = true
     }
     
     private func getCharacters(limit: Int, offset: Int, nameStartsWith: String?) {
@@ -58,6 +60,9 @@ class CharacterListViewController: UIViewController {
             guard let self = self else { return }
             self.stopActivityIndicator(activityIndicator: self.activityIndicator)
             if error == nil {
+                self.charactersCollection.isHidden = false
+                self.tryAgainBtn.isHidden = true
+                self.searchBar.isHidden = false
                 self.totalCharacters = (response?.data?.total)!
                 
                 if let _ = nameStartsWith {
@@ -68,13 +73,13 @@ class CharacterListViewController: UIViewController {
                 
                 self.loadingData = false
                 self.charactersCollection.reloadData()
-                self.callServiceAgain = false
                 self.searching = false
             } else {
+                self.tryAgainBtn.isHidden = false
+                self.charactersCollection.isHidden = true
                 self.showToast(message: Text.MessageErrorCharacters.description,
                                width: CONSTANTS.TOAST_SIZE,
                                backgroundColor: UIColor.orange)
-                self.callServiceAgain = true
             }
 
         }
@@ -90,11 +95,9 @@ class CharacterListViewController: UIViewController {
         self.characters = characters
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if callServiceAgain {
-            getCharacters(limit: limit, offset: offset, nameStartsWith: nil)
-        }
+    @IBAction func tryAgainBtnTapped(_ sender: Any) {
+        getCharacters(limit: limit, offset: 0, nameStartsWith: nil)
+        tryAgainBtn.isHidden = true
     }
     
 }
